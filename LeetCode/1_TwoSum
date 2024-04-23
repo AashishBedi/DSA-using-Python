@@ -1,0 +1,19 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        #Solution 1: Brute Force approach
+        '''
+        n = len(nums)
+        for i in range(n-1):
+            for j in range(i+1, n):
+                if (nums[i] + nums[j]) == target:
+                    return ([i,j])
+        '''
+        #Solution 2: Dictionary
+        my_dict = {}
+
+        #Enumerate gets us both the index and value of the number from the array
+        for i,num in enumerate(nums): 
+            if target-num in my_dict:
+                return ([my_dict[target-num], i])
+            elif num not in my_dict:
+                my_dict[num] = i
