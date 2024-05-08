@@ -1,0 +1,16 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_dict = {"I":1, "V":5,"X":10,"L":50,"C":100,"D":500,"M":1000}
+        int_num = 0
+        prev_rom_num = 0
+        rev_s = s[::-1]
+
+        for val in rev_s:
+            curr_roman_int = roman_dict.get(val)
+            if curr_roman_int >= prev_rom_num:
+                int_num += curr_roman_int
+            else:
+                int_num -= curr_roman_int
+            prev_rom_num = curr_roman_int
+
+        return int_num
