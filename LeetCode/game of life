@@ -1,3 +1,12 @@
+#The Logic we are following is
+'''
+Original   | New   | State
+0          |   0   |  0
+1          |   0   |  1
+0          |   1   |  2
+1          |   1   |  3
+'''
+
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
         """
@@ -14,7 +23,7 @@ class Solution:
                     if board[i][j] in [1,3]:
                         nei += 1
             return nei
-
+#For statr 2, 3
         for r in range(ROWS):
             for c in range(COLS):
                 nei = countNeighors(r, c)
@@ -23,7 +32,7 @@ class Solution:
                         board[r][c] = 3
                 elif nei == 3:
                     board[r][c] = 2
-
+#for state 0, 1
         for r in range(ROWS):
             for c in range(COLS):
                 if board[r][c] == 1:
