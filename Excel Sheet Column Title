@@ -1,0 +1,7 @@
+class Solution:
+    def convertToTitle(self, num: int) -> str:
+        result = []
+        while num:
+            num, remainder = divmod(num-1, 26)
+            result.append(chr(65 + remainder))
+        return ''.join(reversed(result))
