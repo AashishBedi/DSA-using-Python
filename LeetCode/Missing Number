@@ -3,4 +3,4 @@ class Solution:
         n = len(nums)
         for i in range(n):
             n += i - nums[i]
-        return res
+        return n
