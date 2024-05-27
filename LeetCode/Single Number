@@ -1,3 +1,4 @@
+#Way 1: Not so optimal
 from typing import List
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
@@ -5,3 +6,12 @@ class Solution:
         for i in nums:
             result ^= i
         return result
+
+#Way 2: Optimal than Way 1
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        hashmap = Counter(nums)
+
+        for x in hashmap:
+            if hashmap[x] == 1:
+                return x
