@@ -1,0 +1,11 @@
+class Solution:
+    def divide(self, div: int, di: int) -> int:
+        if div == -2147483648 and di == -1:
+            return 2147483647
+        else:
+            x = div/di
+            if x > 0:
+                return floor(x)
+            return ceil(x)
+        
+           
