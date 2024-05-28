@@ -1,0 +1,15 @@
+class MajorityChecker:
+
+    def __init__(self, arr: List[int]):
+        self.arr = arr
+
+    def query(self, left: int, right: int, threshold: int) -> int:
+        element, count = self.cachedCounter(left, right)
+        if count >= threshold:
+            return element
+        else:
+            return -1
+    
+    @lru_cache
+    def cachedCounter(self, left, right):
+        return Counter(self.arr[left : right+1]).most_common(1)[0]
