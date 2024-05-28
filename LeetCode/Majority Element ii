@@ -1,0 +1,11 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        ele_count = Counter(nums)
+
+        maj_ele =[]
+        threshold = len(nums)//3
+
+        for ele, count in ele_count.items():
+            if count>threshold:
+                maj_ele.append(ele)
+        return maj_ele
