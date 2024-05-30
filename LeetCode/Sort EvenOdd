@@ -1,0 +1,20 @@
+class Solution:
+    def sortEvenOdd(self, nums: List[int]) -> List[int]:
+        m1 = []
+        m2 = []
+        res = []
+        for i in range(len(nums)):
+            if i%2 == 0:
+                m1.append(nums[i])
+            else:
+                m2.append(nums[i])
+        m1.sort()
+        m2.sort(reverse = True)
+        for i,j in zip(m1, m2):
+            res.append(i)
+            res.append(j)
+        if len(m1) > len(m2):
+            res.append(m1[-1])
+        if len(m1) < len(m2):
+            res.append(m2[-1])
+        return res
