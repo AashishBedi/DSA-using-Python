@@ -1,0 +1,19 @@
+class Solution:
+    def pivotInteger(self, n: int) -> int:
+        l, r = 0, n
+
+        while l<=r:
+            mid = (l+r)//2
+            ml = self.sum_ap(1,mid)
+            mr = self.sum_ap(mid, n)
+
+            if ml == mr:
+                return mid
+            elif ml < mr:
+                l += 1
+            else:
+                r -= 1
+        return -1
+    
+    def sum_ap(self,a1:int,an:int) -> int:
+        return (an - a1 + 1)*(a1+an)//2
