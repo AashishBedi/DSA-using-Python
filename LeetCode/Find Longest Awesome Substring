@@ -1,0 +1,13 @@
+class Solution:
+    def longestAwesome(self, s: str) -> int:
+        n = len(s)
+        dp = [n + 1] * (1 << 10)
+        dp[0] = -1
+        res, mask = 0, 0
+        for i in range(n):
+            mask ^= 1 << int(s[i])
+            res = max(res, i - dp[mask])
+            for j in range(10):
+                res = max(res, i - dp[mask ^ (1 << j)])
+            dp[mask] = min(dp[mask], i)
+        return res
