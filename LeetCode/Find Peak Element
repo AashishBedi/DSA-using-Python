@@ -1,3 +1,4 @@
+#Case 1:
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         l = 0
@@ -11,3 +12,7 @@ class Solution:
                 l = mid + 1
         return l
         
+#Case 2:
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        return nums.index(max(nums))
