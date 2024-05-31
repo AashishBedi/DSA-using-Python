@@ -1,0 +1,23 @@
+#Way 1
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return set(nums1) & set(nums2)
+
+#Way 2
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        n1 = set(nums1)
+        res = []
+        for i in nums2:
+            if i in n1:
+                res.append(i)
+                n1.remove(i)
+        return res
+
+#Way 3
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        s1 = set(nums1)
+        s2 = set(nums2)
+        it = s1.intersection(s2)
+        return it
