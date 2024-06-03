@@ -1,47 +1,17 @@
-#STACK
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        if not head or left==right:
-            return head
-        
-        temp = ListNode(0)
-        temp.next =  head
-        prev = temp
-
-        for i in range(left-1):
-            prev = prev.next
-        
-        ll = []
-        curr = prev.next
-
-        for i in range(right-left+1):
-            ll.append(curr)
-            curr = curr.next
-        
-        while ll:
-            prev.next = ll.pop()
-            prev = prev.next
-        prev.next = curr
-        return temp.next
-
-
-
-#TWO POINTER
-class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        if not head or left == right:
-            return head
-        
         dummy = ListNode(0, head)
-        prev = dummy
-        
-        for _ in range(left - 1):
-            prev = prev.next
-        
-        current = prev.next
-        
-        for _ in range(right - left):
-            next_node = current.next
-            current.next, next_node.next, prev.next = next_node.next, prev.next, next_node
-
+        #1) reach node at left position
+        lprev, curr = dummy, head
+        for i in range(left-1):
+            lprev, curr = curr, curr.next
+        #2) reverse from left to right
+        prev = None
+        for i in range(right-left+1):
+            temp = curr.next
+            curr.next = prev
+            prev, curr = curr, temp
+        #3) Update pointers
+        lprev.next.next = curr   #curr is node after "right"
+        lprev.next = prev        #prev is "right"
         return dummy.next
