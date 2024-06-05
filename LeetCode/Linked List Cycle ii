@@ -1,0 +1,48 @@
+#My Solution
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        fast = head
+        while fast and fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:
+                break
+        if head and head.next and head.next.next and slow != fast:
+            return None
+        elif not head or not head.next or not head.next.next:
+            return None
+        else:
+            fast = head
+            while slow != fast:
+                slow = slow.next
+                fast = fast.next
+            return fast
+
+
+#Other's Solution
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # x: steps before the meeting point
+        # y: steps in the loop if any
+        # part 1: find first meeting point
+        # 2 steps for fast pointer, and 1 step for slow pointer
+        # check point can be at head
+        fast, slow, check_point = head, head, None
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                check_point = fast
+                break
+
+        # check if there is loop
+        if check_point is None: return None
+
+        # part 2: reset and continue x steps to meet at the loop start
+        slow = head
+        while fast != slow and fast:
+            fast = fast.next
+            slow = slow.next
+        return slow
