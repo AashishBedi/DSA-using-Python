@@ -1,0 +1,11 @@
+class Solution:
+    def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+        temp = head
+
+        nxt_greater = self.removeNodes(temp.next)
+        temp.next = nxt_greater
+        if not nxt_greater or temp.val >= nxt_greater.val:
+            return temp
+        return nxt_greater
