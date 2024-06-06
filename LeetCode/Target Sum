@@ -1,0 +1,13 @@
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        n = len(nums)-1
+        @cache
+        def recur(i, summ):
+            if i<0:
+                if summ == target:
+                    return 1
+                return 0
+            neg = recur(i-1, summ-nums[i])
+            pos = recur(i-1, summ+nums[i])
+            return neg+pos
+        return recur(n, 0)
