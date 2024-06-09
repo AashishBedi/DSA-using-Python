@@ -1,0 +1,42 @@
+# Initialize Hadoop
+cd C:\hadoop-3.3.6.tar\hadoop-3.3.6\sbin
+./start-all.cmd
+.\start-dfs.cmd
+./start-yarn.cmd
+
+#list cmd to ch eck contents of Hadoop file system
+hadoop fs -ls
+
+#To make directory in Hadoop
+hadoop fs -mkdir Bedi
+
+#To create an empty txt file
+hadoop fs -touchz ap.txt
+
+#To create a file with content in it
+notepad f1.txt
+
+#To copy file from local system to hadoop
+hadoop fs -copyFromLocal f1.txt Bedi
+hadoop fs -cat Bedi/f1.txt
+
+#To copy from hdfs to copy in local
+mkdir Desk
+hadoop fs -copyToLocal Bedi/f1.txt Desk/
+cd Desk/
+ls
+cat f1.txt
+
+#To copy files within HDFS
+hadoop fs -mkdir Bedi1
+hadoop fs -cp Bedi/f1.txt Bedi1/
+hadoop fs -cat Bedi1/f1.txt
+
+#To move files within hdfs
+hadoop fs -mkdir Bedi2
+hadoop fs -mv Bedi/f1.txt Bedi2/
+hadoop fs -cat Bedi2/f1.txt
+
+
+hadoop fs -du Bedi2
+hadoop fs -dus Bedi2
