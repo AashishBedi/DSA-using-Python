@@ -1,0 +1,14 @@
+#Start the hadoop
+cd C:\hadoop-3.3.6.tar\hadoop-3.3.6\sbin\
+./start-all.cmd
+./start-dfs.cmd
+./start-yarn.cmd
+jps
+
+hadoop fs -mkdir Dir1
+hadoop fs -put C:\Users\91798\Desktop\Text.txt Dir1
+
+#We have used the path of mapreduce folder as that's an example for us to execute our program
+#And alongwith that we have used the naem of that file we want to execute with wordcount
+#wordcount the class name here
+hadoop jar C:\hadoop-3.3.6.tar\hadoop-3.3.6\share\hadoop\mapreduce\hadoop-mapreduce-examples-3.3.6.jar wordcount Dir1 outputdir1
