@@ -1,0 +1,13 @@
+cd C:\hadoop-3.3.6.tar\hadoop-3.3.6\sbin
+./start-all.cmd
+./start-dfs.cmd
+./start-yarn.cmd
+jps
+
+hadoop fs -mkdir wcinput
+notepad wt.txt
+hadoop fs -put C:\hadoop-3.3.6.tar\hadoop-3.3.6\sbin\wt.txt wcinput
+
+hadoop jar C:\Users\91798\Desktop\DATA_ENGINEERING\Placement\HADOOP\wordcount.jar wcinput wcoutput1
+hadoop fs -ls wcoutput1
+hadoop fs -cat wcoutput1/part-r-00000
