@@ -1,0 +1,10 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        s = bin(n)
+        po = 32 - len(s)
+        res = 0
+        for i in s:
+            if i == '1':
+                res += 2**po
+            po += 1
+        return res
