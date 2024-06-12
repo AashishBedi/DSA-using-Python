@@ -1,0 +1,18 @@
+class Solution:
+    def categorizeBox(self, length: int, width: int, height: int, mass: int) -> str:
+        bulky = False
+        prod = length*width*height
+
+        if length>=10000 or width>=10000 or height>=10000 or prod>=1000000000:
+            bulky = True 
+
+        heavy = mass>=100
+
+        if bulky and heavy:
+            return "Both"
+        elif not bulky and not heavy:
+            return "Neither"
+        elif bulky and not heavy:
+            return "Bulky"
+        else:
+            return "Heavy"
