@@ -1,0 +1,20 @@
+class Solution:
+    def bestHand(self, ranks: List[int], suits: List[str]) -> str:
+        drank = {}
+        dsuit = {}
+
+        for key in ranks:
+            drank[key] = drank.get(key,0) + 1
+        for key in suits:
+            dsuit[key] = dsuit.get(key,0) + 1
+        
+        mrank = max(drank.values())
+        msuit = max(dsuit.values())
+
+        if msuit == 5:
+            return "Flush"
+        if mrank >= 3:
+            return "Three of a Kind"
+        if mrank >= 2:
+            return "Pair"
+        return "High Card"
