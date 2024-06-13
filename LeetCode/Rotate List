@@ -6,7 +6,7 @@ class Solution:
         curr = head
         size = 1
         #Calculating length of LL and making it circular
-        while curr:
+        while curr.next is not None:
             curr = curr.next
             size += 1
         
