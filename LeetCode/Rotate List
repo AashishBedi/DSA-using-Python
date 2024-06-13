@@ -1,0 +1,23 @@
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if head is None:
+            return None
+
+        curr = head
+        size = 1
+        #Calculating length of LL and making it circular
+        while curr:
+            curr = curr.next
+            size += 1
+        
+        curr.next = head
+        #cut from the rotating point
+        i = size-(k%size)
+
+        while i>1:
+            head = head.next
+            i -= 1
+        
+        curr = head.next
+        head.next = None
+        return curr
