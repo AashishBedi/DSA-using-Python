@@ -1,0 +1,54 @@
+from threading import Semaphore
+
+class FizzBuzz:
+    def __init__(self, n: int):
+        self.n = n
+
+        self.fizzSem = Semaphore(0)
+        self.buzzSem = Semaphore(0)
+        self.fizzBuzzSem = Semaphore(0)
+        self.mainSem = Semaphore(1)
+
+    def fizz(self, printFizz: 'Callable[[], None]') -> None:
+        i = 3
+        while i <= self.n:
+            self.fizzSem.acquire()
+            printFizz()
+            self.mainSem.release()
+            i += 3
+            if i % 5 == 0:
+                i += 3
+
+    def buzz(self, printBuzz: 'Callable[[], None]') -> None:
+        i = 5
+        while i <= self.n:
+            self.buzzSem.acquire()
+            printBuzz()
+            self.mainSem.release()
+            i += 5
+            if i % 3 == 0:
+                i += 5
+
+    def fizzbuzz(self, printFizzBuzz: 'Callable[[], None]') -> None:
+        i = 15
+        while i <= self.n:
+            self.fizzBuzzSem.acquire()
+            printFizzBuzz()
+            self.mainSem.release()
+            i += 15
+        
+
+    def number(self, printNumber: 'Callable[[int], None]') -> None:
+
+        for i in range(1, self.n + 1):
+            self.mainSem.acquire()
+            if i % 3 == 0 and i % 5 == 0:
+                self.fizzBuzzSem.release()
+            elif i % 3 == 0:
+                self.fizzSem.release()
+            elif i % 5 == 0:
+                self.buzzSem.release()
+            else:
+                printNumber(i)
+                self.mainSem.release()
+        
