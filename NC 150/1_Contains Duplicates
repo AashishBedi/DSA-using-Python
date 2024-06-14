@@ -1,0 +1,23 @@
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
+    #Paradigm 1
+         n = set(nums)
+         if len(n) == len(nums):
+            return False
+         else:
+            return True
+            
+ #Paradigm 2           
+        nums.sort()
+        for i in range(len(nums)-1):
+            if nums[i] == nums[i+1]:
+                return True
+        return False
+
+#Paradigm 3
+        hashset = set()
+        for i in nums:
+            if i in hashset:
+                return True
+            hashset.add(i)
+        return False
