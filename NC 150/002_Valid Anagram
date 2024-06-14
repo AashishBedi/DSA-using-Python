@@ -1,0 +1,24 @@
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+#Paradigm 1
+        s = sorted(s)
+        t = sorted(t)
+        if s == t:
+            return True
+        else:
+            return False
+
+#Paradigm 2
+        c_s = Counter(s)
+        c_t = Counter(t)
+        return c_s == c_t
+
+#Paradigm 3
+        if len(s) != len(t):
+            return False
+        c_s, c_t = {}, {}
+
+        for i in range(len(s)):
+            c_s[s[i]] = 1 + c_s.get(s[i], 0)
+            c_t[t[i]] = 1 + c_t.get(t[i], 0)
+        return c_s == c_t
