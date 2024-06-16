@@ -1,0 +1,21 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+#TO have count of every element in the nums array
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)#count.get is current count
+
+#In index we are actually mapping count of each values
+#In values we have list of elements mapped according to their count wrt to index
+#c is the count. here count is gonna be the index
+#n is the number
+        for n,c in count.items():
+            freq[c].append(n)
+
+        res = []
+        for i in range(len(freq)-1, 0, -1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
