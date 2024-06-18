@@ -1,0 +1,16 @@
+class Solution:
+    def maxProfitAssignment(self, difficulty, profit, worker):
+        ret = 0
+        pq = []
+        for p, d in zip(profit, difficulty):
+            heappush(pq, (-p, d))  # Use negative profit for max-heap behavior
+        
+        worker.sort(reverse=True)
+        
+        for w in worker:
+            while pq and pq[0][1] > w:
+                heappop(pq)
+            if pq:
+                ret += -pq[0][0]
+                
+        return ret
