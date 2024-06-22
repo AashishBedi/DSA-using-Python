@@ -1,0 +1,12 @@
+class Solution:
+    def findPeakGrid(self, mat: List[List[int]]) -> List[int]:
+        m = []
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                m.append(mat[i][j])
+        maxx = max(m)
+        print(m)
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if mat[i][j] == maxx:
+                    return [i,j]
