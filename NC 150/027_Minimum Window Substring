@@ -1,0 +1,11 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        l, c, d, a = 0, Counter(), Counter(t), [inf, '']
+        for r in range(len(s)):
+            c[s[r]] += 1
+            while c >= d:
+                a = min(a, [r-l+1, s[l:r+1]])
+                c[s[l]] -= 1
+                l += 1
+        
+        return a[1]
