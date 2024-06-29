@@ -1,0 +1,17 @@
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        hashmap = {None:None}
+        #In this first phase: We're copying the values of list
+        temp = head
+        while temp:
+            copy = Node(temp.val)
+            hashmap[temp] = copy
+            temp = temp.next
+        #In this phase: We're linking all those values we copied with pointers
+        temp = head
+        while temp:
+            copy = hashmap[temp]
+            copy.next = hashmap[temp.next]
+            copy.random = hashmap[temp.random]
+            temp = temp.next
+        return hashmap[head]
