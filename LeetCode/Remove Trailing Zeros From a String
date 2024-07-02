@@ -1,0 +1,12 @@
+class Solution:
+    def removeTrailingZeros(self, num: str) -> str:
+        s = num[::-1]
+        s = int(s)
+        k = str(s)
+        k = k[::-1]
+        return k
+
+
+class Solution:
+    def removeTrailingZeros(self, num: str) -> str:
+        return num.strip('0')
